@@ -1,0 +1,997 @@
+/* =================================================================
+   DANIEL RICARDO — PORTFOLIO STYLESHEET
+   =================================================================
+   HOW THIS FILE IS ORGANIZED (use Ctrl+F to jump to any section):
+   
+   1. RESET & VARIABLES   — colors, fonts (change site-wide colors here)
+   2. NAVIGATION BAR      — top menu + language toggle
+   3. HERO SECTION        — name, tagline, photo
+   4. SHARED SECTION STYLES
+   5. ABOUT ME SECTION
+   6. ACHIEVEMENTS SECTION
+   7. SKILLS SECTION
+   8. EXPERIENCE SECTION
+   9. PROJECTS SECTION
+   10. EDUCATION SECTION
+   11. CONTACT SECTION
+   12. FOOTER
+   13. RESPONSIVE (MOBILE) STYLES
+   ================================================================= */
+
+
+/* =================================================================
+   1. RESET & VARIABLES
+   ================================================================= 
+   TIP: Want to change the whole site's color scheme? Just edit the
+   variables below — every section uses these, nothing is hardcoded.
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Text colors */
+  --ink: #0a0a0a;        /* main headings, darkest text */
+  --ink2: #3a3a3a;        /* body paragraph text */
+  --ink3: #717171;        /* labels, captions, muted text */
+
+  /* Background colors */
+  --bg: #fafafa;          /* page background */
+  --surface: #ffffff;     /* card backgrounds */
+  --surface2: #f2f2f0;    /* slightly darker card backgrounds */
+
+  /* Accent (brand) colors — change these to re-theme the whole site */
+  --accent: #1a1aff;
+  --accent2: #4f46e5;
+  --accent-light: #eeeeff;
+
+  /* Medal colors */
+  --gold: #d4a017;
+  --gold-light: #fdf6e3;
+
+  --border: rgba(0, 0, 0, 0.1);
+
+  /* Fonts */
+  --ff-display: 'Space Grotesk', sans-serif; /* headings */
+  --ff-body: 'Inter', sans-serif;            /* paragraphs */
+}
+
+html {
+  scroll-behavior: smooth; /* smooth scroll when clicking nav links */
+}
+
+body {
+  font-family: var(--ff-body);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+
+/* =================================================================
+   2. NAVIGATION BAR
+   ================================================================= */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 250, 250, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 60px;
+}
+
+.nav-brand {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink3);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transition: color .2s;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+/* EN / ID language switch buttons */
+.lang-toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.lang-btn {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--ink3);
+  transition: all .2s;
+  font-family: var(--ff-body);
+}
+
+.lang-btn.active {
+  background: var(--ink);
+  color: #fff;
+}
+
+
+/* =================================================================
+   3. HERO SECTION (the big intro at the top with your photo)
+   ================================================================= */
+.hero {
+  min-height: calc(100vh - 60px);
+  display: grid;
+  grid-template-columns: 1fr 380px; /* text on left, photo on right */
+  align-items: center;
+  gap: 4rem;
+  padding: 4rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* The small pill badge "Open to opportunities..." */
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-light);
+  color: var(--accent2);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 1.75rem;
+  width: fit-content;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+h1.hero-name {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: clamp(3rem, 8vw, 6rem); /* scales with screen size */
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+h1.hero-name span {
+  color: var(--accent); /* highlights "Ricardo" in blue */
+}
+
+.hero-tagline {
+  font-family: var(--ff-display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink3);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.hero-desc {
+  max-width: 480px;
+  font-size: 1rem;
+  color: var(--ink2);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: var(--ff-display);
+  letter-spacing: -0.01em;
+  transition: all .2s;
+}
+
+.btn-primary:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  color: var(--ink);
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
+  transition: all .2s;
+}
+
+.btn-ghost:hover {
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+
+/* The "10+ Gold Medals / 6 Competitions / 7.0 IELTS" row */
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.stat-num {
+  font-family: var(--ff-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--ink3);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Photo on the right side of the hero */
+.hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-photo-wrap {
+  position: relative;
+  width: 320px;
+  height: 420px;
+}
+
+.hero-photo-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border: 2px solid var(--accent);
+  border-radius: 24px;
+  opacity: 0.2;
+}
+
+.hero-photo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -24px;
+  border: 1px solid var(--border);
+  border-radius: 32px;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 20px;
+  display: block;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12);
+}
+
+/* The little speech-bubble with the fun fact, under the photo */
+.fun-fact-bubble {
+  position: absolute;
+  bottom: -20px;
+  left: -30px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-style: italic;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border-bottom-left-radius: 2px;
+  max-width: 220px;
+  line-height: 1.4;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+.fun-fact-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 12px;
+  width: 12px;
+  height: 12px;
+  background: var(--ink);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+
+/* =================================================================
+   4. SHARED SECTION STYLES (used by every section below)
+   ================================================================= */
+section {
+  padding: 5rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Small uppercase label above each section title, e.g. "WHO I AM" */
+.sec-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 0.75rem;
+}
+
+/* Big section title, e.g. "About Me" */
+.sec-title {
+  font-family: var(--ff-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 2.5rem;
+}
+
+
+/* =================================================================
+   5. ABOUT ME SECTION
+   ================================================================= */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* bio text on left, facts on right */
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-text p {
+  color: var(--ink2);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
+.about-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+/* Each row like "📍 Location: Jakarta, Indonesia" */
+.fact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.fact-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--surface2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.fact-label {
+  font-size: 0.72rem;
+  color: var(--ink3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+
+.fact-value {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--ink);
+}
+
+.fact-value small {
+  font-weight: 400;
+  color: var(--ink3);
+  font-size: 0.78rem;
+}
+
+/* Indonesian 🇮🇩 / English 🇬🇧 language chips */
+.lang-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.lang-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.85rem 1.1rem;
+  min-width: 160px;
+}
+
+.lang-flag {
+  font-size: 1.4rem;
+}
+
+.lang-name {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--ink);
+}
+
+.lang-level {
+  font-size: 0.72rem;
+  color: var(--ink3);
+}
+
+/* The blue IELTS score box */
+.ielts-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #1a1aff08, #4f46e510);
+  border: 1px solid var(--accent-light);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.ielts-score {
+  font-family: var(--ff-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.ielts-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink3);
+  margin-bottom: 2px;
+}
+
+.ielts-breakdown {
+  font-size: 0.75rem;
+  color: var(--ink2);
+  font-weight: 500;
+}
+
+/* Interest chips: AI, Web Design, Math, Physics */
+.interests-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.interest-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+  transition: all .2s;
+}
+
+.interest-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light);
+}
+
+
+/* =================================================================
+   6. ACHIEVEMENTS SECTION (the medal cards grid)
+   ================================================================= */
+.ach-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.ach-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all .2s;
+}
+
+.ach-card:hover {
+  border-color: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Colored left-border strip depending on medal tier */
+.ach-card.gold {
+  border-left: 3px solid var(--gold);
+}
+
+.ach-card.silver {
+  border-left: 3px solid #9ca3af;
+}
+
+/* The little pill showing medal type, e.g. "🥇 Gold — National" */
+.ach-medal {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 0.75rem;
+}
+
+.medal-gold {
+  background: var(--gold-light);
+  color: #92600a;
+}
+
+.medal-silver {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.medal-finalist {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.medal-participant {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.ach-title {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.ach-org {
+  font-size: 0.78rem;
+  color: var(--ink3);
+  margin-bottom: 0.2rem;
+}
+
+.ach-date {
+  font-size: 0.73rem;
+  color: var(--ink3);
+}
+
+/* Small subject tag top-right of each card, e.g. "Math" */
+.ach-subject {
+  position: absolute;
+  right: 1rem;
+  top: 1.25rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--ink3);
+  background: var(--surface2);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+
+/* =================================================================
+   7. SKILLS SECTION
+   ================================================================= */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.skill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: all .2s;
+}
+
+.skill-card:hover {
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.skill-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.skill-name {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+
+.skill-level {
+  font-size: 0.78rem;
+  color: var(--ink3);
+  margin-bottom: 0.75rem;
+}
+
+/* The thin progress bar under each skill */
+.skill-bar {
+  height: 3px;
+  background: var(--surface2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--ink);
+  /* NOTE: the actual fill % is set inline in the HTML via style="width:98%" etc. */
+}
+
+
+/* =================================================================
+   8. EXPERIENCE SECTION & 10. EDUCATION SECTION
+   (both use the same ".timeline" structure)
+   ================================================================= */
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.tl-item {
+  display: grid;
+  grid-template-columns: 160px 1fr; /* year on left, content on right */
+  gap: 0 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.tl-item:first-child {
+  padding-top: 0;
+}
+
+.tl-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.tl-year {
+  font-family: var(--ff-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink3);
+  padding-top: 3px;
+}
+
+/* The small dot marker next to each timeline entry */
+.tl-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--ink);
+  border-radius: 50%;
+  position: absolute;
+  left: -20px; /* sits to the left of the text, on the vertical line */
+  top: 8px;
+}
+
+.tl-content {
+  position: relative;
+  padding-left: 12px; /* gives breathing room so the dot doesn't overlap text */
+}
+
+/* The faint vertical connecting line */
+.tl-content::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+
+.tl-heading {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.tl-sub {
+  font-size: 0.85rem;
+  color: var(--accent2);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.tl-desc {
+  font-size: 0.85rem;
+  color: var(--ink2);
+  line-height: 1.7;
+}
+
+/* Small tag pills under each timeline description */
+.tl-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.tl-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: var(--surface2);
+  color: var(--ink2);
+}
+
+.tl-badge.highlight {
+  background: var(--gold-light);
+  color: #92600a;
+}
+
+
+/* =================================================================
+   9. PROJECTS SECTION
+   ================================================================= */
+.projects-placeholder {
+  background: var(--surface);
+  border: 2px dashed var(--border);
+  border-radius: 16px;
+  padding: 3.5rem;
+  text-align: center;
+}
+
+.proj-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.proj-coming {
+  font-family: var(--ff-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.proj-sub {
+  font-size: 0.9rem;
+  color: var(--ink3);
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+
+/* =================================================================
+   11. CONTACT SECTION
+   ================================================================= */
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.contact-lede {
+  font-size: 1rem;
+  color: var(--ink2);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: all .2s;
+}
+
+.contact-link:hover {
+  border-color: var(--ink);
+  transform: translateX(4px);
+}
+
+/* Used for LinkedIn/GitHub rows before you have real links */
+.contact-link.disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
+.cl-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--surface2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.cl-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink3);
+  margin-bottom: 2px;
+}
+
+.cl-value {
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.contact-note {
+  background: var(--surface2);
+  border-radius: 12px;
+  padding: 2rem;
+  font-size: 0.88rem;
+  color: var(--ink2);
+  line-height: 1.7;
+}
+
+.contact-note strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+
+/* =================================================================
+   12. FOOTER
+   ================================================================= */
+footer {
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: var(--ink3);
+}
+
+
+/* =================================================================
+   13. RESPONSIVE (MOBILE) STYLES
+   ================================================================= 
+   These rules override the styles above when the screen is narrow.
+*/
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr; /* stack instead of side-by-side */
+    padding: 3rem 1.5rem 4rem;
+  }
+  .hero-right {
+    display: none; /* hide photo on tablets/phones to save space */
+  }
+  .about-grid,
+  .contact-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .tl-item {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+  .tl-content::before {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    padding: 0 1.25rem;
+  }
+  .nav-links {
+    display: none; /* nav links hidden on very small screens */
+  }
+  section {
+    padding: 3rem 1.25rem;
+  }
+  .hero {
+    padding: 2.5rem 1.25rem 3rem;
+  }
+  .hero-stats {
+    gap: 1.5rem;
+  }
+}
